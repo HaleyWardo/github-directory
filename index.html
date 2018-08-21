@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>GitHub Directory</title>
-        <link href="css/styles.css" rel="stylesheet"/>
-    </head>
-    <body>
-        <div id="app">
-            <header>
-                <h1 v-text="heading"></h1>
 
-                <div id="user__search">
-                    <input type="text" placeholder="Search User" />
-                    <input v-on:click="handleSearch" type="submit" value="submit"/>
-                </div>
-            </header>
+<head>
+	<title>GitHub Directory</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
 
-            <main>
-                <ul>
-                    <li v-for="user in info" class="user">
-                        <img v-bind:src="user.avatar_url" class="user__avatar"/>
-                    </li>
-                </ul>
+<body>
+	<div id="app">
+		<header>
+			<h1 v-text="heading"></h1>
 
-            </main>
-        </div>
+			<div id="user__search">
+				<input type="text" placeholder="Type search text here" />
+				<button id="submit__button" v-on:click="handleSearch">Search</button>
+			</div>
+		</header>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="app.js"></script>
-    </body>
+		<main>
+			<ul>
+				<li v-for="repo in repos" class="user">
+					<h2>{{repo.name}}</h2>
+					<p>{{repo.forks}}</p>
+					<img class="repo__stars"
+							v-if="repo.stargazers_count"
+							src="images/star.png"
+							alt="Number of repo stars" />
+				</li>
+			</ul>
+
+		</main>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="app.js"></script>
+</body>
+
 </html>

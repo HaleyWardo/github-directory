@@ -3,18 +3,23 @@ const directory = new Vue({
   data: {
     heading: 'GitHub Directory',
     query: '',
-    info: []
+    repos: []
   },
   methods: {
     handleSearch: function() {
       this.query = event.target.previousElementSibling.value
 
-      axios
-      .get(`https://api.github.com/search/users?q=${this.query}`)
-      // .get(`https://api.github.com/users/${this.query.login}/repos`)
-      .then(response => {
-        this.info = response.data.items;
-      })
+      fetch(`https://api.github.com/search/users?q=${this.query}`)
+        .then(response => response.json())
+        .then(user => {
+          let users = user.items;
+
+          fetch(`https://api.github.com/users/${users[0].login}/repos`)
+            .then(resp => resp.json())
+            .then(repositories => {
+              this.repos = repositories;
+            })
+        })
     }
   },
 });
@@ -23,3 +28,5 @@ const directory = new Vue({
 // TODO:
 // * make sure input value is either uppercase or lowercase
 // * if no results are found - create error message
+// * add pagination - limit 10 per page
+// * toggle repo information on click
