@@ -7,3 +7,24 @@ header {
 	justify-content: space-around;
 	align-items: center;
 }
+
+#user__search {
+	width: 25%;
+}
+
+input[type=text] {
+	border-style: none;
+	border: 1px solid lightgreen;
+	border-radius: 5px;
+	padding: .5em;
+	width: 75%;
+}
+
+main ul {
+	list-style: none;
+}
+
+.user__avatar {
+	width: 200px;
+	border-radius: 50%;
+}
