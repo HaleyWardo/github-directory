@@ -22,7 +22,7 @@ const directory = new Vue({
               this.repos = repositories;
 
               this.repos.forEach(repo => {
-                repo.showDetail = this.showDetail;
+                Vue.set(repo, 'showDetail', false);
               });
             })
         })
@@ -32,20 +32,15 @@ const directory = new Vue({
         event.target.previousElementSibling.value = '';
     },
     toggleDetails: function(repo) {
-      console.log(repo.showDetail);
-
-      this.showDetail = !this.showDetail;
+      repo.showDetail = !repo.showDetail;
     }
   }
 });
 
-
+// https://vuejs.org/2016/02/06/common-gotchas/
 // TODO:
 // * only one user is being displayed - need to make it so more than one
 // user can be searched and data is shown
-
-// * when the container is clicked - only one container should toggle
-// instead off all of the containers
 
 // * make sure input value is either uppercase or lowercase
 // * if no results are found - create error message

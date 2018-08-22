@@ -25,10 +25,10 @@
 			</div>
 
 			<ul>
-				<li v-for="repo in repos" v-on:click="showDetail = !showDetail" class="user">
+				<li v-for="repo in repos" v-on:click="toggleDetails(repo)" class="user">
 					<h2>{{repo.name}}</h2>
 
-					<div v-show="showDetail" class="repo__data">
+					<div v-show="repo.showDetail" class="repo__data">
 						<p>Forks: {{repo.forks}}</p>
 						<img class="repo__stars"
 								v-if="repo.stargazers_count"
