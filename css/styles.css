@@ -61,6 +61,8 @@ main {
 main ul {
 	list-style: none;
 	padding: 0;
+	position: absolute;
+	width: 79%;
 }
 
 .user__header {
@@ -82,15 +84,37 @@ main ul {
 	margin-bottom: 10px;
 }
 
+.more:after {
+    content: "\25BC";
+    font-size: 8px;
+    position: absolute;
+    right: 20px;
+    margin-top: -10px;
+    font-size: 16px;
+    color: #565656;
+}
+
+.less:after {
+    content: "\25B2";
+    font-size: 8px;
+    position: absolute;
+    right: 20px;
+    margin-top: -10px;
+    font-size: 16px;
+    color: #565656;
+}
+
 .user h2 {
 	margin: 0;
 }
 
-#user__avatar {
+.user__avatar {
 	width: 200px;
 	border-radius: 50%;
+	border: 3px solid #fff;
 }
 
 .repo__stars {
 	width: 20px;
 }
+

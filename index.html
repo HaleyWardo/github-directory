@@ -14,19 +14,25 @@
 
 			<div id="user__search">
 				<input type="text" placeholder="Type search text here" />
-				<button id="submit__button" v-on:click="handleSearch">Search</button>
+				<button id="submit__button" v-on:click="handleSearch()">Search</button>
 			</div>
 		</header>
 
 		<main>
 			<div class="user__header">
-				<img v-bind:src="users.avatar_url" id="user__avatar"/>
+				<img
+					v-bind:src="users.avatar_url"
+					v-bind:class="{user__avatar: users.avatar_url}"/>
 				<p>{{users.login}}</p>
 			</div>
 
 			<ul>
-				<li v-for="repo in repos" v-on:click="toggleDetails(repo)" class="user">
+				<li v-for="repo in repos"
+					v-on:click="toggleDetails(repo)"
+					v-bind:class="{less: repo.showDetail, more: !repo.showDetail}"
+					class="user">
 					<h2>{{repo.name}}</h2>
+					<p v-if="repo.description">{{repo.description}}</p>
 
 					<div v-show="repo.showDetail" class="repo__data">
 						<p>Forks: {{repo.forks}}</p>
@@ -34,10 +40,10 @@
 								v-if="repo.stargazers_count"
 								src="images/star.png"
 								alt="Number of repo stars" />
+						<a v-bind:href="repo.svn_url">GitHub Repo</a>
 					</div>
 				</li>
 			</ul>
-
 		</main>
 	</div>
 

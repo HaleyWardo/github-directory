@@ -2,13 +2,14 @@ const directory = new Vue({
   el: '#app',
   data: {
     heading: 'GitHub Directory',
-    query: '',
+    query: 'ynotdraw',
     users: [],
     repos: [],
     showDetail: false
   },
   methods: {
     handleSearch: function() {
+
       this.query = event.target.previousElementSibling.value
 
       fetch(`https://api.github.com/search/users?q=${this.query}`)
@@ -37,8 +38,11 @@ const directory = new Vue({
   }
 });
 
+// document.addEventListener('DOMContentLoaded', directory.handleSearch())
+
 // https://vuejs.org/2016/02/06/common-gotchas/
 // TODO:
+// * avatar image styles are being displayed when image hasn't been rendered yet
 // * only one user is being displayed - need to make it so more than one
 // user can be searched and data is shown
 
