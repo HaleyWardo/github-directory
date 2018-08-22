@@ -29,7 +29,13 @@
 			<ul>
 				<li v-for="repo in repos"
 					v-on:click="toggleDetails(repo)"
-					v-bind:class="{less: repo.showDetail, more: !repo.showDetail}"
+					v-bind:class="[{
+						less: repo.showDetail,
+						more: !repo.showDetail,
+						forks1: repo.forks <= 1,
+						forks20: repo.forks <= 20 && repo.forks > 1,
+						forksAbove: repo.forks >= 20
+					}]"
 					class="user">
 					<h2>{{repo.name}}</h2>
 					<p v-if="repo.description">{{repo.description}}</p>
