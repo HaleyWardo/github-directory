@@ -19,14 +19,22 @@
 		</header>
 
 		<main>
+			<div class="user__header">
+				<img v-bind:src="users.avatar_url" id="user__avatar"/>
+				<p>{{users.login}}</p>
+			</div>
+
 			<ul>
-				<li v-for="repo in repos" class="user">
+				<li v-for="repo in repos" v-on:click="showDetail = !showDetail" class="user">
 					<h2>{{repo.name}}</h2>
-					<p>{{repo.forks}}</p>
-					<img class="repo__stars"
-							v-if="repo.stargazers_count"
-							src="images/star.png"
-							alt="Number of repo stars" />
+
+					<div v-show="showDetail" class="repo__data">
+						<p>Forks: {{repo.forks}}</p>
+						<img class="repo__stars"
+								v-if="repo.stargazers_count"
+								src="images/star.png"
+								alt="Number of repo stars" />
+					</div>
 				</li>
 			</ul>
 

@@ -3,7 +3,9 @@ const directory = new Vue({
   data: {
     heading: 'GitHub Directory',
     query: '',
-    repos: []
+    users: [],
+    repos: [],
+    showDetail: false
   },
   methods: {
     handleSearch: function() {
@@ -12,20 +14,39 @@ const directory = new Vue({
       fetch(`https://api.github.com/search/users?q=${this.query}`)
         .then(response => response.json())
         .then(user => {
-          let users = user.items;
+          this.users = user.items[0];
 
-          fetch(`https://api.github.com/users/${users[0].login}/repos`)
+          fetch(`https://api.github.com/users/${this.users.login}/repos`)
             .then(resp => resp.json())
             .then(repositories => {
               this.repos = repositories;
+
+              this.repos.forEach(repo => {
+                repo.showDetail = this.showDetail;
+              });
             })
         })
+
+        //need to find a different way to access input field.
+        //could use `document.querySelector('input')`
+        event.target.previousElementSibling.value = '';
+    },
+    toggleDetails: function(repo) {
+      console.log(repo.showDetail);
+
+      this.showDetail = !this.showDetail;
     }
-  },
+  }
 });
 
 
 // TODO:
+// * only one user is being displayed - need to make it so more than one
+// user can be searched and data is shown
+
+// * when the container is clicked - only one container should toggle
+// instead off all of the containers
+
 // * make sure input value is either uppercase or lowercase
 // * if no results are found - create error message
 // * add pagination - limit 10 per page
