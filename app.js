@@ -2,17 +2,15 @@ const directory = new Vue({
   el: '#app',
   data: {
     heading: 'GitHub Directory',
-    query: 'ynotdraw',
+    userQuery: '',
     users: [],
     repos: [],
     showDetail: false
   },
   methods: {
-    handleSearch: function() {
+    handleSearch: function(query) {
 
-      this.query = event.target.previousElementSibling.value
-
-      fetch(`https://api.github.com/search/users?q=${this.query}`)
+      fetch(`https://api.github.com/search/users?q=${query}`)
         .then(response => response.json())
         .then(user => {
           this.users = user.items[0];
@@ -28,9 +26,7 @@ const directory = new Vue({
             })
         })
 
-        //need to find a different way to access input field.
-        //could use `document.querySelector('input')`
-        event.target.previousElementSibling.value = '';
+        this.userQuery = '';
     },
     toggleDetails: function(repo) {
       repo.showDetail = !repo.showDetail;
@@ -38,7 +34,7 @@ const directory = new Vue({
   }
 });
 
-// document.addEventListener('DOMContentLoaded', directory.handleSearch())
+document.addEventListener('DOMContentLoaded', directory.handleSearch(this.userQuery = 'haleywardo'))
 
 // https://vuejs.org/2016/02/06/common-gotchas/
 // TODO:
