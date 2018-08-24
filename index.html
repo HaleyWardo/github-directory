@@ -37,8 +37,11 @@
 						forksAbove: repo.forks >= 20
 					}]"
 					class="user">
-					<h2>{{repo.name}}</h2>
-					<p v-if="repo.description">{{repo.description}}</p>
+
+					<div class="repo__header">
+						<h2>{{repo.name}}</h2>
+						<p v-if="repo.description">{{repo.description}}</p>
+					</div>
 
 					<div v-show="repo.showDetail" class="repo__data">
 						<p>Forks: {{repo.forks}}</p>
