@@ -13,7 +13,10 @@
 			<h1 v-text="heading"></h1>
 
 			<div id="user__search">
-				<input v-model="userQuery" type="text" placeholder="Type search text here" />
+				<input v-on:keypress.enter="handleSearch(userQuery)"
+					v-model="userQuery"
+					type="text"
+					placeholder="Type search text here" />
 				<button id="submit__button" v-on:click="handleSearch(userQuery)">Search</button>
 			</div>
 		</header>

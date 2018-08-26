@@ -5,7 +5,8 @@ const directory = new Vue({
     userQuery: '',
     users: [],
     repos: [],
-    showDetail: false
+    showDetail: false,
+    // loading: false  -- use for loading indicator
   },
   methods: {
     handleSearch: function(query) {
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', directory.handleSearch(this.userQu
 
 // https://vuejs.org/2016/02/06/common-gotchas/
 // TODO:
+// * add contributors
 // * avatar image styles are being displayed when image hasn't been rendered yet
 // * only one user is being displayed - need to make it so more than one
 // user can be searched and data is shown
@@ -46,3 +48,22 @@ document.addEventListener('DOMContentLoaded', directory.handleSearch(this.userQu
 // * if no results are found - create error message
 // * add pagination - limit 10 per page
 // * toggle repo information on click
+
+
+
+
+
+// Vue.component('header', {
+//   template: `<div>{{message}}</div>`,
+//   data: function() {
+
+//   }
+// });
+
+// const app = new Vue({
+//   el: '#app',
+//   data: {
+//     msg: 'this is a message'
+//   }
+// });
+
